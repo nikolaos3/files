@@ -2,6 +2,7 @@
 set listchars=eol:$,tab:>·,trail:~,extends:>,precedes:<
 set list
 set relativenumber
+set number
 
 " spaces instant tab
 set tabstop=4
