@@ -35,3 +35,6 @@ map <c-n> :NERDTreeToggle<CR>
 
 call vundle#end()
 filetype plugin indent on
+
+autocmd BufRead,BufNewFile *.md setlocal spell spelllang=ru,en
+
