@@ -2,6 +2,7 @@
 set listchars=eol:$,tab:>·,trail:~,extends:>,precedes:<
 set list
 set relativenumber
+set number
 
 " spaces instant tab
 set tabstop=4
@@ -22,6 +23,7 @@ Plugin 'honza/vim-snippets'
 Plugin 'Raimondi/delimitMate'
 Plugin 'scrooloose/nerdtree'
 Plugin 'MattesGroeger/vim-bookmarks'
+Plugin 'JamshedVesuna/vim-markdown-preview'
 
 map <c-n> :NERDTreeToggle<CR>
 
