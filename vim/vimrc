@@ -36,5 +36,7 @@ map <c-n> :NERDTreeToggle<CR>
 call vundle#end()
 filetype plugin indent on
 
+" Spell checking 
+highlight SpellBad ctermbg=darkred cterm=underline ctermfg=white
 autocmd BufRead,BufNewFile *.md setlocal spell spelllang=ru,en
 
