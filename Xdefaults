@@ -1,0 +1,4 @@
+URxvt.font: -*-clean-medium-r-*-*-15-*-*-*-*-*-*-*
+URxvt*background: black
+URxvt*foreground: white
+
