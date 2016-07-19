@@ -10,12 +10,12 @@ sudo service procps start
 
 # /dev/shm
 sudo cp /vagrant/oracle-shm /etc/init.d/
-sudo chmod 755 /etc/inid.d/oracle-shm
+sudo chmod 755 /etc/init.d/oracle-shm
 sudo update-rc.d oracle-shm defaults 01 99
 sudo service oracle-shm start
 
 sudo apt-get update
-sudo apt-get install -y htop mc libaio1 alien language-pack-ru
+sudo apt-get install -y libaio1 alien language-pack-ru unrar
 sudo ln -s /usr/bin/awk /bin/awk
 sudo mkdir /var/lock/subsys
 sudo touch /var/lock/subsys/listener
@@ -27,8 +27,16 @@ echo . /u01/app/oracle/product/11.2.0/xe/bin/oracle_env.sh >> ./.profile
 source /u01/app/oracle/product/11.2.0/xe/bin/oracle_env.sh
 
 # change database language
-sudo -i -u oracle
-source /u01/app/oracle/product/11.2.0/xe/bin/oracle_env.sh
-sqlplus "/ as sysdba" @/vagrant/lng.sql
+sudo -u oracle ORACLE_HOME=/u01/app/oracle/product/11.2.0/xe ORACLE_SID=XE /u01/app/oracle/product/11.2.0/xe/bin/sqlplus "/ as sysdba" @/vagrant/dropdb.sql
+cp /vagrant/initXE.ora /u01/app/oracle/product/11.2.0/xe/dbs
+unrar x /vagrant/xsl.rar /u01/app/oracle/product/11.2.0/xe/rdbms
+echo exit | sudo -u oracle ORACLE_HOME=/u01/app/oracle/product/11.2.0/xe ORACLE_SID=XE /u01/app/oracle/product/11.2.0/xe/bin/sqlplus "/ as sysdba" @/vagrant/createdb.sql
+echo exit | sudo -u oracle ORACLE_HOME=/u01/app/oracle/product/11.2.0/xe ORACLE_SID=XE /u01/app/oracle/product/11.2.0/xe/bin/sqlplus "/ as sysdba" @/u01/app/oracle/product/11.2.0/xe/rdbms/admin/catalog.sql
+echo exit | sudo -u oracle ORACLE_HOME=/u01/app/oracle/product/11.2.0/xe ORACLE_SID=XE /u01/app/oracle/product/11.2.0/xe/bin/sqlplus "/ as sysdba" @/u01/app/oracle/product/11.2.0/xe/rdbms/admin/catblock.sql
+echo exit | sudo -u oracle ORACLE_HOME=/u01/app/oracle/product/11.2.0/xe ORACLE_SID=XE /u01/app/oracle/product/11.2.0/xe/bin/sqlplus "/ as sysdba" @/u01/app/oracle/product/11.2.0/xe/rdbms/admin/catproc.sql
+echo exit | sudo -u oracle ORACLE_HOME=/u01/app/oracle/product/11.2.0/xe ORACLE_SID=XE /u01/app/oracle/product/11.2.0/xe/bin/sqlplus "/ as sysdba" @/u01/app/oracle/product/11.2.0/xe/rdbms/admin/catoctk.sql
+echo exit | sudo -u oracle ORACLE_HOME=/u01/app/oracle/product/11.2.0/xe ORACLE_SID=XE /u01/app/oracle/product/11.2.0/xe/bin/sqlplus "/ as sysdba" @/u01/app/oracle/product/11.2.0/xe/sqlplus/admin/pupbld.sql
+echo exit | sudo -u oracle ORACLE_HOME=/u01/app/oracle/product/11.2.0/xe ORACLE_SID=XE /u01/app/oracle/product/11.2.0/xe/bin/sqlplus "/ as sysdba" @/vagrant/restart.sql
+
 exit
 
