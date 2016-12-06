@@ -24,6 +24,7 @@ Plugin 'Raimondi/delimitMate'
 Plugin 'scrooloose/nerdtree'
 Plugin 'MattesGroeger/vim-bookmarks'
 Plugin 'JamshedVesuna/vim-markdown-preview'
+Plugin 'fatih/vim-go'
 
 map <c-n> :NERDTreeToggle<CR>
 
